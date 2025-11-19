@@ -1,0 +1,95 @@
+
+<?php
+require_once 'database.php';
+// Fetch all pending reservations with car and customer details
+$sql = "SELECT r.reservation_id, r.status, r.rental_date, r.return_date, r.total_amount, c.car_model, c.car_type, c.car_image, cu.full_name, cu.email, c.rental_rate FROM reservations r JOIN cars c ON r.car_id = c.car_id JOIN customers cu ON r.id = cu.id WHERE r.status = 'Pending'";
+$stmt = $pdo->query($sql);
+$reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pending Bookings - DriveEasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-12">Pending Reservations</h1>
+    <?php if (empty($reservations)): ?>
+      <div class="text-center py-16">
+        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <h3 class="text-xl font-semibold text-gray-700 mb-2">No pending reservations</h3>
+        <p class="text-gray-500 mb-6">All requests have been processed.</p>
+      </div>
+    <?php else: ?>
+      <div class="space-y-6">
+        <?php foreach ($reservations as $res): ?>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="flex flex-col lg:flex-row gap-6 p-6">
+              <div class="flex-shrink-0">
+                <img src="<?php echo htmlspecialchars($res['car_image']); ?>" alt="<?php echo htmlspecialchars($res['car_model']); ?>" class="w-full lg:w-64 h-48 object-cover rounded-lg" />
+              </div>
+              <div class="flex-1">
+                <div class="flex items-start justify-between mb-4 flex-wrap gap-4">
+                  <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-1"><?php echo htmlspecialchars($res['car_model']); ?></h2>
+                    <p class="text-gray-600"><?php echo htmlspecialchars($res['car_type']); ?></p>
+                    <p class="text-xs text-gray-500 mt-1">Requested by: <span class="font-semibold text-gray-900"><?php echo htmlspecialchars($res['full_name']); ?></span> (<?php echo htmlspecialchars($res['email']); ?>)</p>
+                  </div>
+                  <span class="px-4 py-2 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">Pending</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <div class="flex items-center space-x-2 text-blue-600 mb-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span class="font-semibold text-gray-900">Rental Date</span>
+                    </div>
+                    <p class="text-blue-600 font-semibold mb-1"><?php echo htmlspecialchars($res['rental_date']); ?></p>
+                  </div>
+                  <div>
+                    <div class="flex items-center space-x-2 text-blue-600 mb-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span class="font-semibold text-gray-900">Return Date</span>
+                    </div>
+                    <p class="text-blue-600 font-semibold mb-1"><?php echo htmlspecialchars($res['return_date']); ?></p>
+                  </div>
+                </div>
+                <div>
+                  <p class="text-gray-600 text-sm mb-1">Total Amount</p>
+                  <?php
+                    $days = 1;
+                    if (!empty($res['rental_date']) && !empty($res['return_date'])) {
+                      $start = new DateTime($res['rental_date']);
+                      $end = new DateTime($res['return_date']);
+                      $interval = $start->diff($end);
+                      $days = (int)$interval->format('%a');
+                      if ($days < 1) $days = 1;
+                    }
+                    $rate = isset($res['rental_rate']) ? floatval($res['rental_rate']) : 0;
+                    $live_total = $days * $rate;
+                  ?>
+                  <p class="text-3xl font-bold text-gray-900">₱<?php echo number_format($live_total, 2); ?></p>
+                  <span class="text-gray-500 text-sm">(<?php echo $days; ?> day<?php echo $days > 1 ? 's' : ''; ?> × ₱<?php echo number_format($rate, 2); ?>)</span>
+                </div>
+                <form method="POST" class="mt-4 flex gap-2">
+                  <input type="hidden" name="reservation_id" value="<?php echo $res['reservation_id']; ?>">
+                  <button type="submit" name="approve" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors whitespace-nowrap">Approve</button>
+                  <button type="submit" name="reject" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-lg font-medium transition-colors whitespace-nowrap">Reject</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+  </div>
+</body>
+</html>

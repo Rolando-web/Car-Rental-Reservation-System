@@ -17,7 +17,7 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
-    echo "Database connection established.";
+    // echo "Database connection established.";
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int)$e->getCode());
 }

@@ -19,11 +19,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
       $car_image = $imgPath;
     }
   }
-  $success = $carController->create($car_model, $plate_number, $car_type, $rental_rate, $status, $car_image);
-  $addCarMsg = $success ? 'Car added successfully!' : 'Failed to add car.';
+   $success = $carController->create($car_model, $plate_number, $car_type, $rental_rate, $status, $car_image);
+    $addCarMsg = $success ? 'Car added successfully!' : 'Failed to add car.';
+    if ($success) {
+        header("Location: admin-dashboard.php?success=1");
+        exit;
+    }
+}
+// Handle car deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_car']) && isset($_POST['delete_car_id'])) {
+  $car_id = $_POST['delete_car_id'];
+  $success = $carController->delete($car_id);
+  $addCarMsg = $success ? 'Car deleted successfully!' : 'Failed to delete car.';
+  header("Location: admin-dashboard.php?deleted=1");
+  exit;
 }
 // Fetch all cars for display
 $cars = $carController->getAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,114 +48,13 @@ $cars = $carController->getAll();
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-50">
-    <nav class="bg-white shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <a href="index.html" class="flex items-center space-x-2">
-            <div
-              class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center"
-            >
-              <svg
-                class="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-                ></path>
-              </svg>
-            </div>
-            <span class="text-xl font-bold text-gray-900">DriveEasy</span>
-          </a>
-          <div class="flex items-center space-x-8">
-            <a href="admin-dashboard.html" class="text-blue-600 font-medium"
-              >Dashboard</a
-            >
-            <a
-              href="bookings.html"
-              class="text-gray-700 hover:text-blue-600 font-medium"
-              >Bookings</a
-            >
-            <a
-              href="index.html#cars"
-              class="text-gray-700 hover:text-blue-600 font-medium"
-              >Cars</a
-            >
-            <div class="relative">
-              <button
-                id="profileButton"
-                class="text-gray-700 hover:text-blue-600"
-                onclick="toggleProfileDropdown()"
-              >
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  ></path>
-                </svg>
-              </button>
-              <!-- Dropdown Menu -->
-              <div
-                id="profileDropdown"
-                class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
-              >
-                <a
-                  href="admin-dashboard.html"
-                  class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
-                >
-                  <svg
-                    class="w-5 h-5 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    ></path>
-                  </svg>
-                  Dashboard
-                </a>
-                <button
-                  onclick="signOut()"
-                  class="w-full flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors text-left"
-                >
-                  <svg
-                    class="w-5 h-5 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                    ></path>
-                  </svg>
-                  Sign Out
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
+  <?php include 'components/admin-nav.php'; ?>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Hidden form for car deletion -->
+            <form id="deleteCarForm" method="POST" action="" style="display:none;">
+              <input type="hidden" name="delete_car_id" id="delete_car_id" />
+              <input type="hidden" name="delete_car" value="1" />
+            </form>
       <!-- Add Car Button -->
       <div class="flex justify-end mb-6">
         <button onclick="openAddCarModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">Add Car</button>
@@ -154,38 +66,40 @@ $cars = $carController->getAll();
       <div id="addCarModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
         <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg relative">
           <button onclick="closeAddCarModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
-          <h2 class="text-2xl font-bold mb-6">Add New Car</h2>
+          <h2 id="carModalTitle" class="text-2xl font-bold mb-6">Add New Car</h2>
           <form id="addCarForm" method="POST" action="" enctype="multipart/form-data">
-                        <div class="mb-4">
-                          <label class="block text-sm font-semibold mb-2">Car Image</label>
-                          <input type="file" name="car_image" accept="image/*" required class="w-full px-4 py-2 border rounded-lg" />
-                        </div>
+            <input type="hidden" name="car_id" id="car_id" />
+            <div class="mb-4">
+              <label class="block text-sm font-semibold mb-2">Car Image</label>
+              <input type="file" name="car_image" id="car_image" accept="image/*" class="w-full px-4 py-2 border rounded-lg" />
+              <img id="carImagePreview" src="#" alt="Preview" class="h-12 w-20 object-cover rounded mt-2 hidden" />
+            </div>
             <div class="mb-4">
               <label class="block text-sm font-semibold mb-2">Car Model</label>
-              <input type="text" name="car_model" required class="w-full px-4 py-2 border rounded-lg" />
+              <input type="text" name="car_model" id="car_model" required class="w-full px-4 py-2 border rounded-lg" />
             </div>
             <div class="mb-4">
               <label class="block text-sm font-semibold mb-2">Plate Number</label>
-              <input type="text" name="plate_number" required class="w-full px-4 py-2 border rounded-lg" />
+              <input type="text" name="plate_number" id="plate_number" required class="w-full px-4 py-2 border rounded-lg" />
             </div>
             <div class="mb-4">
               <label class="block text-sm font-semibold mb-2">Car Type</label>
-              <input type="text" name="car_type" required class="w-full px-4 py-2 border rounded-lg" />
+              <input type="text" name="car_type" id="car_type" required class="w-full px-4 py-2 border rounded-lg" />
             </div>
             <div class="mb-4">
               <label class="block text-sm font-semibold mb-2">Rental Rate</label>
-              <input type="number" step="0.01" name="rental_rate" required class="w-full px-4 py-2 border rounded-lg" />
+              <input type="number" step="0.01" name="rental_rate" id="rental_rate" required class="w-full px-4 py-2 border rounded-lg" />
             </div>
             <div class="mb-6">
               <label class="block text-sm font-semibold mb-2">Status</label>
-              <select name="status" required class="w-full px-4 py-2 border rounded-lg">
+              <select name="status" id="status" required class="w-full px-4 py-2 border rounded-lg">
                 <option value="Available">Available</option>
                 <option value="Rented">Rented</option>
                 <option value="Maintenance">Maintenance</option>
               </select>
             </div>
             <div class="flex justify-end">
-              <button type="submit" name="add_car" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">Add Car</button>
+              <button type="submit" id="carModalSubmit" name="add_car" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold">Add Car</button>
             </div>
           </form>
         </div>
@@ -266,21 +180,35 @@ $cars = $carController->getAll();
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rate</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
+                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
             <tbody id="carsTableBody">
               <?php foreach ($cars as $car): ?>
               <tr>
-                <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($car['car_id']); ?></td>
-                <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($car['car_model']); ?></td>
-                <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($car['plate_number']); ?></td>
-                <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($car['car_type']); ?></td>
-                <td class="px-6 py-4 whitespace-nowrap">₱<?php echo htmlspecialchars($car['rental_rate']); ?></td>
-                <td class="px-6 py-4 whitespace-nowrap"><?php echo htmlspecialchars($car['status']); ?></td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-6 py-4 whitespace-nowrap"> <?php echo htmlspecialchars($car['car_id']); ?> </td>
+                <td class="px-6 py-4 whitespace-nowrap"> <?php echo htmlspecialchars($car['car_model']); ?> </td>
+                <td class="px-6 py-4 whitespace-nowrap"> <?php echo htmlspecialchars($car['plate_number']); ?> </td>
+                <td class="px-6 py-4 whitespace-nowrap"> <?php echo htmlspecialchars($car['car_type']); ?> </td>
+                <td class="px-6 py-4 whitespace-nowrap">₱<?php echo htmlspecialchars($car['rental_rate']); ?> </td>
+                <td class="px-6 py-4 whitespace-nowrap"> <?php echo htmlspecialchars($car['status']); ?> </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center">
                   <?php if ($car['car_image']): ?>
-                    <img src="<?php echo htmlspecialchars($car['car_image']); ?>" alt="Car Image" class="h-12 w-20 object-cover rounded" />
+                    <img src="<?php echo htmlspecialchars($car['car_image']); ?>" alt="Car Image" class="h-12 w-20 object-cover rounded mx-auto" />
                   <?php endif; ?>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-center align-middle">
+                  <span class="inline-block cursor-pointer mr-3" title="Edit" onclick="editCar(<?php echo $car['car_id']; ?>)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500 hover:text-yellow-600 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536M9 13l6-6m2 2l-6 6m-2 2h2v2h-2v-2z" />
+                    </svg>
+                  </span>
+                  <span class="inline-block cursor-pointer" title="Delete" onclick="deleteCar(<?php echo $car['car_id']; ?>)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600 hover:text-red-700 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </span>
                 </td>
               </tr>
               <?php endforeach; ?>
@@ -293,11 +221,80 @@ $cars = $carController->getAll();
     <script>
       // Modal logic
       function openAddCarModal() {
+        resetCarModal();
+        document.getElementById('carModalTitle').textContent = 'Add New Car';
+        document.getElementById('carModalSubmit').textContent = 'Add Car';
+        document.getElementById('carModalSubmit').name = 'add_car';
         document.getElementById('addCarModal').classList.remove('hidden');
       }
+
+      function openEditCarModal(car) {
+        resetCarModal();
+        document.getElementById('carModalTitle').textContent = 'Edit Car';
+        document.getElementById('carModalSubmit').textContent = 'Update Car';
+        document.getElementById('carModalSubmit').name = 'edit_car';
+        document.getElementById('car_id').value = car.car_id;
+        document.getElementById('car_model').value = car.car_model;
+        document.getElementById('plate_number').value = car.plate_number;
+        document.getElementById('car_type').value = car.car_type;
+        document.getElementById('rental_rate').value = car.rental_rate;
+        document.getElementById('status').value = car.status;
+        if (car.car_image) {
+          var img = document.getElementById('carImagePreview');
+          img.src = car.car_image;
+          img.classList.remove('hidden');
+        }
+        document.getElementById('addCarModal').classList.remove('hidden');
+      }
+
       function closeAddCarModal() {
         document.getElementById('addCarModal').classList.add('hidden');
       }
+
+      // Close modal when clicking outside modal content
+      document.getElementById('addCarModal').addEventListener('mousedown', function(e) {
+        if (e.target === this) {
+          closeAddCarModal();
+        }
+      });
+
+      function resetCarModal() {
+        document.getElementById('addCarForm').reset();
+        document.getElementById('car_id').value = '';
+        document.getElementById('carImagePreview').classList.add('hidden');
+      }
+
+      // Edit icon click handler
+      function editCar(carId) {
+        // Find car data from PHP array rendered as JS object
+        var cars = window.carsData || [];
+        var car = cars.find(function(c) { return c.car_id == carId; });
+        if (car) {
+          openEditCarModal(car);
+        }
+      }
+
+      // Delete icon click handler
+      function deleteCar(carId) {
+        if (confirm('Are you sure you want to delete this car?')) {
+          document.getElementById('delete_car_id').value = carId;
+          document.getElementById('deleteCarForm').submit();
+        }
+      }
+
+      // Image preview for file input
+      document.getElementById('car_image').addEventListener('change', function(e) {
+        const [file] = this.files;
+        if (file) {
+          const preview = document.getElementById('carImagePreview');
+          preview.src = URL.createObjectURL(file);
+          preview.classList.remove('hidden');
+        }
+      });
+
+      // Expose PHP cars array to JS
+      window.carsData = <?php echo json_encode($cars); ?>;
+
       function toggleProfileDropdown() {
         const dropdown = document.getElementById("profileDropdown");
         dropdown.classList.toggle("hidden");

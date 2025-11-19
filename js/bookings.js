@@ -284,14 +284,12 @@ function printBooking() {
   alert(
     "Opening print dialog...\n\nIn production, this would generate a printable booking confirmation with all details."
   );
-  // In production: window.print() or generate PDF
 }
 
 function downloadReceipt() {
   alert(
     "Downloading receipt...\n\nIn production, this would download a PDF receipt with booking details and payment information."
   );
-  // In production: Generate and download PDF
 }
 
 function cancelBooking(bookingId) {
@@ -303,20 +301,17 @@ function cancelBooking(bookingId) {
     alert(
       `Booking #${bookingId} has been cancelled successfully.\n\nA confirmation email has been sent to your registered email address.`
     );
-    // In production, this would call an API to cancel the booking
-    // Then reload the bookings list
+
     setTimeout(() => {
       window.location.reload();
     }, 1500);
   }
 }
 
-// Event Listeners
+
 document.addEventListener("DOMContentLoaded", function () {
   loadBookings();
 
-  // Close modal when clicking outside
-  const detailsModal = document.getElementById("detailsModal");
   if (detailsModal) {
     detailsModal.addEventListener("click", function (e) {
       if (e.target === this) {
@@ -325,7 +320,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Close modal with Escape key
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
       closeDetailsModal();

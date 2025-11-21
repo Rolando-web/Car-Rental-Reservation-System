@@ -48,7 +48,9 @@ $cars = $carController->getAll();
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-50">
+
   <?php include 'components/admin-nav.php'; ?>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <!-- Hidden form for car deletion -->
             <form id="deleteCarForm" method="POST" action="" style="display:none;">
@@ -251,7 +253,6 @@ $cars = $carController->getAll();
         document.getElementById('addCarModal').classList.add('hidden');
       }
 
-      // Close modal when clicking outside modal content
       document.getElementById('addCarModal').addEventListener('mousedown', function(e) {
         if (e.target === this) {
           closeAddCarModal();
@@ -266,7 +267,6 @@ $cars = $carController->getAll();
 
       // Edit icon click handler
       function editCar(carId) {
-        // Find car data from PHP array rendered as JS object
         var cars = window.carsData || [];
         var car = cars.find(function(c) { return c.car_id == carId; });
         if (car) {
@@ -274,7 +274,6 @@ $cars = $carController->getAll();
         }
       }
 
-      // Delete icon click handler
       function deleteCar(carId) {
         if (confirm('Are you sure you want to delete this car?')) {
           document.getElementById('delete_car_id').value = carId;
@@ -282,7 +281,6 @@ $cars = $carController->getAll();
         }
       }
 
-      // Image preview for file input
       document.getElementById('car_image').addEventListener('change', function(e) {
         const [file] = this.files;
         if (file) {
@@ -292,7 +290,7 @@ $cars = $carController->getAll();
         }
       });
 
-      // Expose PHP cars array to JS
+
       window.carsData = <?php echo json_encode($cars); ?>;
 
       function toggleProfileDropdown() {

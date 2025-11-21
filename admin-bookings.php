@@ -4,7 +4,20 @@ session_start();
 // TODO: Add authentication check for admin role
 require_once 'database.php';
 
-// Fetch all bookings (example query, adjust as needed)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['booking_id'])) {
+  $booking_id = $_POST['booking_id'];
+  if (isset($_POST['approve'])) {
+    $stmt = $pdo->prepare("UPDATE reservations SET status = 'Approved' WHERE id = ?");
+    $stmt->execute([$booking_id]);
+  } elseif (isset($_POST['reject'])) {
+    $stmt = $pdo->prepare("UPDATE reservations SET status = 'Rejected' WHERE id = ?");
+    $stmt->execute([$booking_id]);
+  }
+  header('Location: admin-bookings.php');
+  exit;
+}
+
+
 $stmt = $pdo->query('SELECT r.id, c.full_name, car.car_model, r.status, r.created_at FROM reservations r JOIN customers c ON r.customer_id = c.id JOIN cars car ON r.car_id = car.car_id ORDER BY r.created_at DESC');
 $bookings = $stmt->fetchAll();
 ?>

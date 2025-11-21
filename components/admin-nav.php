@@ -22,16 +22,21 @@
             <span class="text-xl font-bold text-gray-900">DriveEasy</span>
           </a>
           <div class="flex items-center space-x-8">
-            <a href="admin-dashboard.html" class="text-blue-600 font-medium"
+            <a href="admin-dashboard.php" class="text-blue-600 font-medium"
               >Dashboard</a
+            >
+            <a
+              href="admin-active-bookings.php"
+              class="text-gray-700 hover:text-blue-600 font-medium"
+              >Active Bookings</a
             >
             <a
               href="Booking-pending.php"
               class="text-gray-700 hover:text-blue-600 font-medium"
-              >Bookings</a
+              >Pending</a
             >
             <a
-              href="index.html#cars"
+              href="admin-car.php"
               class="text-gray-700 hover:text-blue-600 font-medium"
               >Cars</a
             >

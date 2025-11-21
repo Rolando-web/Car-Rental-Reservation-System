@@ -1,7 +1,7 @@
             <?php
             require_once 'database.php';
             session_start();
-            // Fetch car details for summary
+            
             $car = null;
             if (isset($_GET['car_id'])) {
               $car_id = intval($_GET['car_id']);
@@ -27,8 +27,8 @@
               if ($error) {
                 echo '<div class="bg-red-100 text-red-800 p-4 rounded mb-4">' . htmlspecialchars($error) . '</div>';
               } else {
-                $stmt = $pdo->prepare("INSERT INTO reservations (id, car_id, rental_date, return_date, total_amount, status) VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$customer_id, $car_id, $rental_date, $return_date, $total_amount, $status]);
+                $stmt = $pdo->prepare("INSERT INTO reservations (id, car_id, rental_date, return_date, total_amount, status) VALUES (?, ?, ?, ?, ?, 'Pending')");
+                $stmt->execute([$customer_id, $car_id, $rental_date, $return_date, $total_amount]);
                 header('Location: bookings.php');
                 exit();
               }
@@ -53,6 +53,7 @@
       </h1>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
         <!-- Booking Details Form -->
         <div class="lg:col-span-2">
           <div class="bg-white rounded-lg shadow-md p-8">
@@ -60,6 +61,42 @@
               Booking Details
             </h2>
             <form id="bookingForm" method="POST" action="">
+              <!-- User Information Section -->
+              <div class="mb-8 pb-8 border-b border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Your Information</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="flex items-center text-gray-700 font-medium mb-2">
+                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                      </svg>
+                      Full Name
+                    </label>
+                    <input type="text" name="customer_name" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100" value="<?php echo isset($_SESSION['user']['full_name']) ? htmlspecialchars($_SESSION['user']['full_name']) : ''; ?>" readonly />
+                  </div>
+                  <div>
+                    <label class="flex items-center text-gray-700 font-medium mb-2">
+                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg>
+                      Email
+                    </label>
+                    <input type="email" name="customer_email" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100" value="<?php echo isset($_SESSION['user']['email']) ? htmlspecialchars($_SESSION['user']['email']) : ''; ?>" readonly />
+                  </div>
+                  <div>
+                    <label class="flex items-center text-gray-700 font-medium mb-2">
+                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 00.948.684h2.544a1 1 0 00.948-.684H17a2 2 0 012 2v2a1 1 0 001 1H2a1 1 0 001-1V5z"></path>
+                      </svg>
+                      Contact Number
+                    </label>
+                    <input type="tel" name="customer_contact" class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100" value="<?php echo isset($_SESSION['user']['contact_number']) ? htmlspecialchars($_SESSION['user']['contact_number']) : ''; ?>" readonly />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rental Dates Section -->
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Rental Dates</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label class="flex items-center text-gray-700 font-medium mb-2">
@@ -85,7 +122,6 @@
               <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold text-lg transition-colors">Confirm Booking</button>
             </form>
             <script>
-            // Calculate total days and amount
             const rentalInput = document.getElementById('rental_date');
             const returnInput = document.getElementById('return_date');
             const totalDaysSpan = document.getElementById('totalDays');
@@ -113,13 +149,13 @@
             }
             rentalInput.addEventListener('change', updateTotal);
             returnInput.addEventListener('change', updateTotal);
-            // Set total_amount hidden field on form submit
             document.getElementById('bookingForm').addEventListener('submit', function(e) {
               updateTotal();
-            });
+            })
             </script>
           </div>
         </div>
+
         <!-- Booking Summary -->
         <div class="lg:col-span-1">
           <div class="bg-white rounded-lg shadow-md p-8 sticky top-8">
@@ -154,10 +190,7 @@
           </div>
         </div>
 
-
-
     <script>
-    // Set total_amount hidden field on form submit
     document.getElementById('bookingForm').addEventListener('submit', function(e) {
       var total = document.getElementById('totalPrice') ? document.getElementById('totalPrice').textContent : '';
       document.getElementById('total_amount').value = total;

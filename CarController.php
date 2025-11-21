@@ -34,9 +34,18 @@ class CAR {
         return $stmt->execute([$car_model, $plate_number, $car_type, $rental_rate, $status, $car_image, $car_id]);
     }
 
-    // Delete a car
+    // Delete a car (with cascading delete of reservations)
     public function delete($car_id) {
-        $stmt = $this->pdo->prepare('DELETE FROM cars WHERE car_id = ?');
-        return $stmt->execute([$car_id]);
+        try {
+            // First delete all reservations linked to this car
+            $stmt = $this->pdo->prepare('DELETE FROM reservations WHERE car_id = ?');
+            $stmt->execute([$car_id]);
+            
+            // Then delete the car itself
+            $stmt = $this->pdo->prepare('DELETE FROM cars WHERE car_id = ?');
+            return $stmt->execute([$car_id]);
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

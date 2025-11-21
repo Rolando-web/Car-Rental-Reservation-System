@@ -1,0 +1,120 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2145 >>
+stream
+BT
+/F1 10 Tf
+40 750 Td
+(DRIVEEASY - DAILY REPORT) Tj
+0 -12 Td
+(================================================) Tj
+0 -12 Td
+(Date: November 21, 2025) Tj
+0 -12 Td
+(Generated: November 21, 2025 - 04:34 PM) Tj
+0 -12 Td
+(================================================) Tj
+0 -12 Td
+() Tj
+0 -12 Td
+(DAILY STATISTICS) Tj
+0 -12 Td
+(Total Bookings: 6) Tj
+0 -12 Td
+(Active \(Confirmed\): 6) Tj
+0 -12 Td
+(Revenue from Payments: PHP 24,000.00) Tj
+0 -12 Td
+() Tj
+0 -12 Td
+(TODAY'S BOOKINGS) Tj
+0 -12 Td
+(================================================) Tj
+0 -12 Td
+(Res #15 | Test User | Honda | 2025-11-20 to 2025-11-22 | PHP 0.00 | Confirmed) Tj
+0 -12 Td
+(Res #19 | Test User | GTR | 2025-11-21 to 2025-11-22 | PHP 0.00 | Confirmed) Tj
+0 -12 Td
+(Res #17 | Test User | Honda | 2025-11-21 to 2025-11-22 | PHP 0.00 | Confirmed) Tj
+0 -12 Td
+(Res #21 | Test User | Honda | 2025-11-21 to 2025-11-22 | PHP 0.00 | Confirmed) Tj
+0 -12 Td
+(Res #18 | Test User | RTXQ | 2025-11-21 to 2025-11-24 | PHP 0.00 | Confirmed) Tj
+0 -12 Td
+(Res #20 | marvin | Honda | 2025-11-21 to 2025-11-23 | PHP 0.00 | Confirmed) Tj
+0 -12 Td
+() Tj
+0 -12 Td
+(PAYMENT TRANSACTIONS) Tj
+0 -12 Td
+(================================================) Tj
+0 -12 Td
+(03:34 PM | Test User | PHP 4,000.00 | Online) Tj
+0 -12 Td
+(03:16 PM | Test User | PHP 12,000.00 | Online) Tj
+0 -12 Td
+(02:55 PM | Test User | PHP 2,000.00 | Cash) Tj
+0 -12 Td
+(02:36 PM | Test User | PHP 2,000.00 | Cash) Tj
+0 -12 Td
+(02:25 PM | Test User | PHP 2,000.00 | Online) Tj
+0 -12 Td
+(02:14 PM | Test User | PHP 2,000.00 | Online) Tj
+0 -12 Td
+() Tj
+0 -12 Td
+(ACTIVE RENTALS) Tj
+0 -12 Td
+(================================================) Tj
+0 -12 Td
+(Test User | Honda \(UYHT12\) | 2 days) Tj
+0 -12 Td
+(Test User | GTR \(HYTO54\) | 1 days) Tj
+0 -12 Td
+(Test User | Honda \(UYHT12\) | 1 days) Tj
+0 -12 Td
+(Test User | Honda \(UYHT12\) | 1 days) Tj
+0 -12 Td
+(Test User | RTXQ \(RXCQS5\) | 3 days) Tj
+0 -12 Td
+(marvin | Honda \(UYHT12\) | 2 days) Tj
+0 -12 Td
+() Tj
+0 -12 Td
+(================================================) Tj
+0 -12 Td
+(Report End) Tj
+0 -12 Td
+(Generated: 2025-11-21 16:34:54) Tj
+0 -12 Td
+() Tj
+0 -12 Td
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000002443 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2513
+%%EOF

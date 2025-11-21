@@ -19,7 +19,7 @@ const today = new Date().toISOString().split("T")[0];
 document.getElementById("pickupDate").min = today;
 document.getElementById("dropoffDate").min = today;
 
-// Calculate total price based on dates
+// Calculate total price
 function calculateTotal() {
   const pickupDate = document.getElementById("pickupDate").value;
   const dropoffDate = document.getElementById("dropoffDate").value;
@@ -100,6 +100,5 @@ document.getElementById("bookingForm").addEventListener("submit", function (e) {
     `Booking Confirmed!\n\nCar: ${carTitle}\nTotal: $${booking.total} for ${booking.days} days\n\nThank you for choosing DriveEasy!`
   );
 
-  // Redirect to home page
   window.location.href = "index.html";
 });

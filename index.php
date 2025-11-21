@@ -1,3 +1,36 @@
+
+<?php
+require_once 'database.php';
+session_start();
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$is_admin = isset($_SESSION['is_admin']) ? $_SESSION['is_admin'] : false;
+$notifications = [];
+$unread_count = 0;
+if ($user_id) {
+  $sql = $is_admin
+    ? "SELECT * FROM notifications WHERE is_admin = 1 ORDER BY created_at DESC LIMIT 10"
+    : "SELECT * FROM notifications WHERE customer_id = ? ORDER BY created_at DESC LIMIT 10";
+  $stmt = $pdo->prepare($sql);
+  if ($is_admin) {
+    $stmt->execute();
+  } else {
+    $stmt->execute([$user_id]);
+  }
+  $notifications = $stmt->fetchAll();
+  $unread_sql = $is_admin
+    ? "SELECT COUNT(*) FROM notifications WHERE is_admin = 1 AND is_read = 0"
+    : "SELECT COUNT(*) FROM notifications WHERE customer_id = ? AND is_read = 0";
+  $unread_stmt = $pdo->prepare($unread_sql);
+  if ($is_admin) {
+    $unread_stmt->execute();
+  } else {
+    $unread_stmt->execute([$user_id]);
+  }
+  $unread_count = $unread_stmt->fetchColumn();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +38,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DriveEasy - Premium Car Rentals</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <meta
       property="og:image"
       content="https://bolt.new/static/og_default.png"
@@ -17,8 +50,31 @@
     />
   </head>
   <body class="bg-gray-50">
-
 <?php include 'components/navigator.php'; ?>
+
+<div class="flex justify-end items-center max-w-7xl mx-auto mt-4 px-4">
+
+      <?php if ($user_id): ?>
+        <div class="relative mr-4">
+
+          <div id="notifDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-50 border border-gray-200">
+            <div class="p-4 border-b font-bold text-gray-700">Notifications</div>
+            <?php if (empty($notifications)): ?>
+              <div class="p-4 text-gray-500 text-center">No notifications</div>
+            <?php else: ?>
+              <ul class="max-h-80 overflow-y-auto divide-y">
+                <?php foreach ($notifications as $notif): ?>
+                  <li class="p-4 <?php echo $notif['is_read'] ? 'bg-white' : 'bg-blue-50'; ?> text-gray-800 text-sm">
+                    <?php echo htmlspecialchars($notif['message']); ?>
+                    <div class="text-xs text-gray-400 mt-1"><?php echo date('M d, Y H:i', strtotime($notif['created_at'])); ?></div>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            <?php endif; ?>
+          </div>
+        </div>
+      <?php endif; ?>
+    </div>
 
     <section
       class="bg-gradient-to-br from-blue-600 to-blue-700 text-white py-24 px-4"
@@ -36,7 +92,6 @@
     </section>
 
 <?php
-require_once 'database.php';
 $cars = $pdo->query("SELECT * FROM cars WHERE status = 'Available'")->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <section id="cars" class="py-16 px-4 bg-gray-50">
@@ -105,50 +160,30 @@ $cars = $pdo->query("SELECT * FROM cars WHERE status = 'Available'")->fetchAll(P
     <script src="js/signout.js"></script>
     <script>
 function openCarModal(car) {
-  // Fill modal with car data
-  document.getElementById('modalCarImage').src = car.car_image || '';
-  document.getElementById('modalCarImage').alt = car.car_model || '';
-  document.getElementById('modalCarTitle').textContent = car.car_model || '';
-  document.getElementById('modalCarSubtitle').textContent = car.car_type || '';
-  document.getElementById('modalCarDescription').textContent = car.description || '';
-  document.getElementById('modalCarSeats').textContent = car.seats || '5';
-  document.getElementById('modalCarTransmission').textContent = car.transmission || 'Automatic';
-  document.getElementById('modalCarFuel').textContent = car.fuel || 'Petrol';
-  document.getElementById('modalCarPrice').textContent = car.rental_rate || '0.00';
-  // Features (optional)
-  var featuresList = document.getElementById('modalFeaturesList');
-  if (featuresList) {
-    featuresList.innerHTML = '';
-    if (car.features && Array.isArray(car.features)) {
-      car.features.forEach(function(f) {
-        var div = document.createElement('div');
-        div.textContent = f;
-        featuresList.appendChild(div);
-      });
-    }
-  }
-  // Set the booking link with car data
-  if (typeof setProceedToBookingLink === 'function') {
-    setProceedToBookingLink(car);
-  }
-  document.getElementById('carModal').classList.remove('hidden');
+  // ...existing code...
 }
 function closeCarModal() {
-  document.getElementById('carModal').classList.add('hidden');
+  // ...existing code...
 }
 
+// Notification bell dropdown logic
+document.addEventListener('DOMContentLoaded', function() {
+  var bell = document.getElementById('notifBell');
+  var dropdown = document.getElementById('notifDropdown');
+  if (bell && dropdown) {
+    bell.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdown.classList.toggle('hidden');
+    });
+    document.addEventListener('click', function(e) {
+      if (!dropdown.contains(e.target) && !bell.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+  }
+});
 
-      // Close dropdown when clicking outside
-      document.addEventListener("click", function (event) {
-        const dropdown = document.getElementById("profileDropdown");
-        const button = document.getElementById("profileButton");
-        if (
-          !dropdown.contains(event.target) &&
-          !button.contains(event.target)
-        ) {
-          dropdown.classList.add("hidden");
-        }
-      });
+// ...existing code for profile dropdown...
     </script>
   </body>
 </html>

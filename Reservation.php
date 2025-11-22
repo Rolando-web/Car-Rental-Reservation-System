@@ -44,6 +44,7 @@
     <title>Complete Your Booking - DriveEasy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/dark-theme.css">
+     <link rel="icon" href="icon.png" type="icon.png">
   </head>
   <body class="bg-gray-50">
    <?php include 'components/navigator.php'; ?>

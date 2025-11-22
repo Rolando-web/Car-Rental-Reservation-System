@@ -102,6 +102,7 @@ $cars = $carController->getAll();
     <title>Admin Dashboard - DriveEasy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/dark-theme.css">
+     <link rel="icon" href="icon.png" type="icon.png">
   </head>
   <body class="min-h-screen bg-black">
 

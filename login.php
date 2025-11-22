@@ -70,6 +70,7 @@ error_reporting(E_ALL);
     <title>Sign In - DriveEasy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/dark-theme.css">
+     <link rel="icon" href="icon.png" type="icon.png">
   </head>
   <body class="bg-gray-50">
     <div class="min-h-screen flex items-center justify-center px-4 py-12">

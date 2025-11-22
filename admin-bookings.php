@@ -28,6 +28,7 @@ $bookings = $stmt->fetchAll();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Bookings - DriveEasy</title>
   <script src="https://cdn.tailwindcss.com"></script>
+   <link rel="icon" href="icon.png" type="icon.png">
 </head>
 <body class="bg-gray-50">
   <?php include 'components/admin-nav.php'; ?>

@@ -55,6 +55,7 @@ $activeRevenue = $stmt->fetch()['revenue'] ?? 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Active Bookings - DriveEasy Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
+     <link rel="icon" href="icon.png" type="icon.png">
     <link rel="stylesheet" href="css/dark-theme.css">
   </head>
   <body class="bg-gray-50">

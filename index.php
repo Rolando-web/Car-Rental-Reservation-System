@@ -40,6 +40,7 @@ if ($user_id) {
     <title>DriveEasy - Premium Car Rentals</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="css/dark-theme.css">
+     <link rel="icon" href="icon.png" type="icon.png">
     <meta
       property="og:image"
       content="https://bolt.new/static/og_default.png"

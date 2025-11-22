@@ -62,6 +62,7 @@ $paidReservations = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'reservation
     <title>My Bookings - DriveEasy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/dark-theme.css">
+     <link rel="icon" href="icon.png" type="icon.png">
   </head>
   <body class="bg-gray-50">
 <?php include 'components/navigator.php'; ?>

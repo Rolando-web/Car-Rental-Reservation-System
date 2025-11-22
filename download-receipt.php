@@ -52,7 +52,7 @@ if (!$receipt || !$receipt['payment_id']) {
   exit();
 }
 
-// Calculate days and total
+
 $rentalDate = new DateTime($receipt['rental_date']);
 $returnDate = new DateTime($receipt['return_date']);
 $days = $returnDate->diff($rentalDate)->days;
@@ -67,7 +67,7 @@ $rentalStartDate = date('F d, Y', strtotime($receipt['rental_date']));
 $returnDateFormatted = date('F d, Y', strtotime($receipt['return_date']));
 $paymentDateFormatted = date('F d, Y h:i A', strtotime($receipt['payment_date']));
 
-// Generate PDF directly with proper formatting
+
 generatePDF($receipt, $days, $rate, $total, $receiptNum, $rentalStartDate, $returnDateFormatted, $paymentDateFormatted);
 
 function generatePDF($receipt, $days, $rate, $total, $receiptNum, $rentalStartDate, $returnDateFormatted, $paymentDateFormatted) {
@@ -75,7 +75,7 @@ function generatePDF($receipt, $days, $rate, $total, $receiptNum, $rentalStartDa
   header('Content-Disposition: attachment; filename="Receipt_' . $receiptNum . '.pdf"');
   header('Cache-Control: no-cache, no-store, must-revalidate');
   
-  // Build receipt text
+
   $text = "DRIVEEASY CAR RENTAL RECEIPT\n";
   $text .= "================================================\n\n";
   $text .= "Receipt #: " . $receiptNum . "\n";
@@ -118,10 +118,7 @@ function generatePDF($receipt, $days, $rate, $total, $receiptNum, $rentalStartDa
 }
 
 function createSimplePdf($text) {
-  // Create a proper PDF 1.4 file structure
   $lines = explode("\n", $text);
-  
-  // Build PDF content stream
   $stream = "BT\n/F1 11 Tf\n50 750 Td\n";
   $yPos = 750;
   

@@ -69,6 +69,7 @@ error_reporting(E_ALL);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In - DriveEasy</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/dark-theme.css">
   </head>
   <body class="bg-gray-50">
     <div class="min-h-screen flex items-center justify-center px-4 py-12">
@@ -76,7 +77,7 @@ error_reporting(E_ALL);
         <!-- Logo and Title -->
         <div class="text-center mb-8">
           <div class="flex items-center justify-center space-x-3 mb-4">
-            <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center">
+            <div class="w-14 h-14 bg-red-700 rounded-2xl flex items-center justify-center">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
               </svg>
@@ -101,20 +102,20 @@ error_reporting(E_ALL);
             <div class="space-y-4">
               <div>
                 <label for="signInEmail" class="block text-sm font-semibold text-gray-900 mb-2">Email</label>
-                <input type="email" id="signInEmail" name="login_email" required placeholder="you@example.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" />
+                <input type="email" id="signInEmail" name="login_email" required placeholder="you@example.com" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all" />
               </div>
               <div>
                 <label for="signInPassword" class="block text-sm font-semibold text-gray-900 mb-2">Password</label>
-                <input type="password" id="signInPassword" name="login_password" required placeholder="••••••••" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" />
+                <input type="password" id="signInPassword" name="login_password" required placeholder="••••••••" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-all" />
               </div>
               <div class="flex items-center justify-between text-sm">
                 <label class="flex items-center">
-                  <input type="checkbox" class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                  <input type="checkbox" class="w-4 h-4 text-red-700 border-gray-300 rounded focus:ring-red-500" />
                   <span class="ml-2 text-gray-600">Remember me</span>
                 </label>
-                <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">Forgot password?</a>
+                <a href="#" class="text-red-700 hover:text-red-800 font-medium">Forgot password?</a>
               </div>
-              <button type="submit" name="login" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-colors">Sign In</button>
+              <button type="submit" name="login" class="w-full bg-red-700 hover:bg-red-800 text-white py-3 rounded-lg font-semibold transition-colors">Sign In</button>
             </div>
           </form>
 

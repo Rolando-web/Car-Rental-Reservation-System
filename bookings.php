@@ -61,6 +61,7 @@ $paidReservations = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'reservation
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Bookings - DriveEasy</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/dark-theme.css">
   </head>
   <body class="bg-gray-50">
 <?php include 'components/navigator.php'; ?>
@@ -85,7 +86,7 @@ $paidReservations = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'reservation
           </svg>
           <h3 class="text-xl font-semibold text-gray-700 mb-2">No bookings yet</h3>
           <p class="text-gray-500 mb-6">Start exploring our amazing cars and make your first booking!</p>
-          <a href="index.php#cars" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">Browse Cars</a>
+          <a href="index.php#cars" class="inline-block bg-red-700 hover:bg-red-800 text-white px-8 py-3 rounded-lg font-medium transition-colors">Browse Cars</a>
         </div>
       <?php else: ?>
         <div class="space-y-6">
@@ -137,7 +138,7 @@ $paidReservations = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'reservation
                               Download Receipt
                             </a>
                           <?php else: ?>
-                            <button type="button" id="returnBtn_<?php echo $booking['reservation_id']; ?>" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors whitespace-nowrap" onclick="openReturnModal(<?php echo $booking['reservation_id']; ?>, <?php echo $live_total; ?>)">Return Car</button>
+                            <button type="button" id="returnBtn_<?php echo $booking['reservation_id']; ?>" class="bg-red-700 hover:bg-red-800 text-white px-8 py-3 rounded-lg font-medium transition-colors whitespace-nowrap" onclick="openReturnModal(<?php echo $booking['reservation_id']; ?>, <?php echo $live_total; ?>)">Return Car</button>
                           <?php endif; ?>
                         </div>
                       <?php endif; ?>
@@ -188,13 +189,13 @@ $paidReservations = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'reservation
      <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
        <button onclick="closeReturnModal()" class="absolute top-2 right-2 text-gray-400 hover:text-gray-700 text-2xl">&times;</button>
        <h2 class="text-2xl font-bold mb-6 text-gray-900">Car Return & Payment</h2>
-       <div class="mb-6 p-4 bg-blue-50 rounded-lg">
+       <div class="mb-6 p-4 bg-red-50 rounded-lg">
          <p class="text-sm text-gray-600 mb-2">Total Amount Due</p>
-         <div class="text-3xl font-bold text-blue-700 mb-4">₱<span id="modalTotalAmount">0.00</span></div>
+         <div class="text-3xl font-bold text-red-700 mb-4">₱<span id="modalTotalAmount">0.00</span></div>
        </div>
        
        <div id="paymentOptions" class="space-y-3 mb-6">
-         <button type="button" onclick="selectPaymentMethod('Online')" class="w-full p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-600 hover:bg-blue-50 transition-colors text-left payment-option" data-method="Online">
+         <button type="button" onclick="selectPaymentMethod('Online')" class="w-full p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-red-700 hover:bg-red-50 transition-colors text-left payment-option" data-method="Online">
            <p class="font-semibold text-gray-900">💳 Online Payment</p>
            <p class="text-xs text-gray-600 mt-1">Pay instantly via card or e-wallet</p>
          </button>

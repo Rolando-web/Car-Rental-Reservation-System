@@ -1,6 +1,4 @@
 <?php
-// database.php
-// PDO connection for DriveEasy
 
 $host = 'localhost';
 $db   = 'car-rental';
@@ -17,7 +15,6 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
-    // echo "Database connection established.";
 } catch (PDOException $e) {
     throw new PDOException($e->getMessage(), (int)$e->getCode());
 }

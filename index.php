@@ -39,6 +39,7 @@ if ($user_id) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DriveEasy - Premium Car Rentals</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/dark-theme.css">
     <meta
       property="og:image"
       content="https://bolt.new/static/og_default.png"
@@ -77,14 +78,14 @@ if ($user_id) {
     </div>
 
     <section
-      class="bg-gradient-to-br from-blue-600 to-blue-700 text-white py-24 px-4"
+      class="bg-gradient-to-br from-red-700 to-red-800 text-white py-24 px-4"
     >
       <div class="max-w-7xl mx-auto text-center">
         <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
           Premium Car Rentals<br />
           Made Simple
         </h1>
-        <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+        <p class="text-xl md:text-2xl text-red-100 max-w-3xl mx-auto">
           Choose from our fleet of luxury and economy vehicles. Book online in
           minutes and hit the road with confidence.
         </p>
@@ -107,7 +108,7 @@ $cars = $pdo->query("SELECT * FROM cars WHERE status = 'Available'")->fetchAll(P
               <?php if ($car['car_image']): ?>
                 <img src="<?php echo htmlspecialchars($car['car_image']); ?>" alt="<?php echo htmlspecialchars($car['car_model']); ?>" class="w-full h-56 object-cover" />
               <?php endif; ?>
-              <span class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span class="absolute top-4 right-4 bg-red-700 text-white px-3 py-1 rounded-full text-sm font-medium">
                 <?php echo htmlspecialchars($car['status']); ?>
               </span>
             </div>
@@ -140,7 +141,7 @@ $cars = $pdo->query("SELECT * FROM cars WHERE status = 'Available'")->fetchAll(P
                   <span class="text-gray-600 text-sm"> per day</span>
                 </div>
                 <a href="Reservation.php?car_id=<?php echo $car['car_id']; ?>">
-                  <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">Book Now</button>
+                  <button class="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-lg font-medium transition-colors">Book Now</button>
                 </a>
 
               </div>

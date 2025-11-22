@@ -127,11 +127,14 @@ if (!function_exists('renderNotificationBell')) {
 }
 ?>
 
+<?php
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
 <nav class="bg-white shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center space-x-2">
-        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+        <div class="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center">
           <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
           </svg>
@@ -139,9 +142,9 @@ if (!function_exists('renderNotificationBell')) {
         <span class="text-xl font-bold text-gray-900">DriveEasy</span>
       </div>
       <div class="flex items-center space-x-8">
-        <a href="index.php" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-        <a href="index.php#cars" class="text-gray-700 hover:text-blue-600 font-medium">Cars</a>
-        <a href="bookings.php" class="text-gray-700 hover:text-blue-600 font-medium">My Bookings</a>
+        <a href="index.php" class="<?php echo $current_page == 'index.php' ? 'text-red-700' : 'text-gray-700 hover:text-red-700'; ?> font-medium">Home</a>
+        <a href="index.php#cars" class="<?php echo $current_page == 'index.php' ? 'text-red-700' : 'text-gray-700 hover:text-red-700'; ?> font-medium">Cars</a>
+        <a href="bookings.php" class="<?php echo $current_page == 'bookings.php' ? 'text-red-700' : 'text-gray-700 hover:text-red-700'; ?> font-medium">My Bookings</a>
         <div class="flex items-center space-x-4">
           <?php if (function_exists('renderNotificationBell')) renderNotificationBell(); ?>
           <div class="relative">
@@ -156,7 +159,7 @@ if (!function_exists('renderNotificationBell')) {
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                My Bookings
+                Bookings
               </a>
               <button onclick="signOut()" class="w-full flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors text-left">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -43,6 +43,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Complete Your Booking - DriveEasy</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/dark-theme.css">
   </head>
   <body class="bg-gray-50">
    <?php include 'components/navigator.php'; ?>
@@ -105,7 +106,7 @@
                     </svg>
                     Rental Date
                   </label>
-                  <input type="date" id="rental_date" name="rental_date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+                  <input type="date" id="rental_date" name="rental_date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required />
                 </div>
                 <div>
                   <label class="flex items-center text-gray-700 font-medium mb-2">
@@ -114,12 +115,12 @@
                     </svg>
                     Return Date
                   </label>
-                  <input type="date" id="return_date" name="return_date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required />
+                  <input type="date" id="return_date" name="return_date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required />
                 </div>
               </div>
               <input type="hidden" id="car_id" name="car_id" value="<?php echo isset($_GET['car_id']) ? intval($_GET['car_id']) : ''; ?>">
               <input type="hidden" id="total_amount" name="total_amount" value="">
-              <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold text-lg transition-colors">Confirm Booking</button>
+              <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white py-4 rounded-lg font-semibold text-lg transition-colors">Confirm Booking</button>
             </form>
             <script>
             const rentalInput = document.getElementById('rental_date');
@@ -180,7 +181,7 @@
                 <div id="totalSection" class="mt-4 pt-4 border-t">
                   <div class="flex items-center justify-between text-lg">
                     <span class="text-gray-700 font-medium">Total (<span id="totalDays">0</span> days)</span>
-                    <span class="text-2xl font-bold text-blue-600">₱<span id="totalPrice">0.00</span></span>
+                    <span class="text-2xl font-bold text-red-700">₱<span id="totalPrice">0.00</span></span>
                   </div>
                 </div>
               </div>

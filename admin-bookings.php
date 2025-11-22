@@ -33,7 +33,7 @@ $bookings = $stmt->fetchAll();
   <?php include 'components/admin-nav.php'; ?>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h1 class="text-4xl font-bold text-gray-900 mb-8">Reservation Requests</h1>
-    <div class="bg-white rounded-xl shadow p-8">
+    <div class="bg-white rounded-xl shadow p-8">  
       <table class="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
@@ -66,5 +66,6 @@ $bookings = $stmt->fetchAll();
       </table>
     </div>
   </div>
+      <script src="js/signout.js">  </script>
 </body>
 </html>

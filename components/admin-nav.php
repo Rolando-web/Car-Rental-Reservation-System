@@ -1,9 +1,12 @@
+<?php
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
  <nav class="bg-white shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-          <a href="index.html" class="flex items-center space-x-2">
+          <a href="admin-dashboard.php" class="flex items-center space-x-2">
             <div
-              class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center"
+              class="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center"
             >
               <svg
                 class="w-6 h-6 text-white"
@@ -22,22 +25,22 @@
             <span class="text-xl font-bold text-gray-900">DriveEasy</span>
           </a>
           <div class="flex items-center space-x-8">
-            <a href="admin-dashboard.php" class="text-blue-600 font-medium"
+            <a href="admin-dashboard.php" class="<?php echo $current_page == 'admin-dashboard.php' ? 'text-red-700' : 'text-gray-700 hover:text-red-700'; ?> font-medium"
               >Dashboard</a
             >
             <a
               href="admin-active-bookings.php"
-              class="text-gray-700 hover:text-blue-600 font-medium"
+              class="<?php echo $current_page == 'admin-active-bookings.php' ? 'text-red-700' : 'text-gray-700 hover:text-red-700'; ?> font-medium"
               >Active Bookings</a
             >
             <a
               href="Booking-pending.php"
-              class="text-gray-700 hover:text-blue-600 font-medium"
+              class="<?php echo $current_page == 'Booking-pending.php' ? 'text-red-700' : 'text-gray-700 hover:text-red-700'; ?> font-medium"
               >Pending</a
             >
             <a
               href="admin-car.php"
-              class="text-gray-700 hover:text-blue-600 font-medium"
+              class="<?php echo $current_page == 'admin-car.php' ? 'text-red-700' : 'text-gray-700 hover:text-red-700'; ?> font-medium"
               >Cars</a
             >
             <div class="relative">
@@ -66,7 +69,7 @@
                 class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50"
               >
                 <a
-                  href="admin-dashboard.html"
+                  href="admin-dashboard.php"
                   class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
                 >
                   <svg

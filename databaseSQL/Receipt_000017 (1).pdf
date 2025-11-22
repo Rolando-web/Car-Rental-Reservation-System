@@ -1,437 +1,0 @@
-%PDF-1.4
-1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj
-2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj
-3 0 obj<</Type/Page/Parent 2 0 R/Resources<</Font<</F1 4 0 R>>>>/MediaBox[0 0 612 792]/Contents 5 0 R>>endobj
-4 0 obj<</Type/Font/Subtype/Type1/BaseFont/Helvetica>>endobj
-5 0 obj<</Length 6649>>stream
-BT /F1 10 Tf 50 750 Td
-(* { margin: 0; padding: 0; }) Tj
-0 -15 Td
-(    body {) Tj
-0 -15 Td
-(      font-family: Arial, sans-serif;) Tj
-0 -15 Td
-(      background: white;) Tj
-0 -15 Td
-(      color: #333;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .receipt-container {) Tj
-0 -15 Td
-(      max-width: 800px;) Tj
-0 -15 Td
-(      margin: 0 auto;) Tj
-0 -15 Td
-(      background: white;) Tj
-0 -15 Td
-(      border: 2px solid #0066cc;) Tj
-0 -15 Td
-(      border-radius: 10px;) Tj
-0 -15 Td
-(      padding: 30px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .header {) Tj
-0 -15 Td
-(      text-align: center;) Tj
-0 -15 Td
-(      border-bottom: 3px solid #0066cc;) Tj
-0 -15 Td
-(      padding-bottom: 20px;) Tj
-0 -15 Td
-(      margin-bottom: 20px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .header h1 {) Tj
-0 -15 Td
-(      color: #0066cc;) Tj
-0 -15 Td
-(      font-size: 28px;) Tj
-0 -15 Td
-(      margin-bottom: 5px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .header p {) Tj
-0 -15 Td
-(      color: #666;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .receipt-number {) Tj
-0 -15 Td
-(      background: #f0f0f0;) Tj
-0 -15 Td
-(      padding: 10px;) Tj
-0 -15 Td
-(      border-radius: 5px;) Tj
-0 -15 Td
-(      text-align: center;) Tj
-0 -15 Td
-(      margin-bottom: 20px;) Tj
-0 -15 Td
-(      font-weight: bold;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .section {) Tj
-0 -15 Td
-(      margin-bottom: 20px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .section-title {) Tj
-0 -15 Td
-(      background: #0066cc;) Tj
-0 -15 Td
-(      color: white;) Tj
-0 -15 Td
-(      padding: 10px 15px;) Tj
-0 -15 Td
-(      border-radius: 3px;) Tj
-0 -15 Td
-(      font-weight: bold;) Tj
-0 -15 Td
-(      margin-bottom: 10px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .info-row {) Tj
-0 -15 Td
-(      display: flex;) Tj
-0 -15 Td
-(      justify-content: space-between;) Tj
-0 -15 Td
-(      padding: 8px 0;) Tj
-0 -15 Td
-(      border-bottom: 1px solid #eee;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .info-label {) Tj
-0 -15 Td
-(      font-weight: bold;) Tj
-0 -15 Td
-(      color: #333;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .info-value {) Tj
-0 -15 Td
-(      color: #666;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .amount-box {) Tj
-0 -15 Td
-(      background: #f9f9f9;) Tj
-0 -15 Td
-(      border: 2px solid #0066cc;) Tj
-0 -15 Td
-(      padding: 15px;) Tj
-0 -15 Td
-(      border-radius: 5px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .amount-row {) Tj
-0 -15 Td
-(      display: flex;) Tj
-0 -15 Td
-(      justify-content: space-between;) Tj
-0 -15 Td
-(      padding: 8px 0;) Tj
-0 -15 Td
-(      font-size: 14px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .amount-row.total {) Tj
-0 -15 Td
-(      font-size: 16px;) Tj
-0 -15 Td
-(      font-weight: bold;) Tj
-0 -15 Td
-(      color: #0066cc;) Tj
-0 -15 Td
-(      border-top: 2px solid #0066cc;) Tj
-0 -15 Td
-(      padding-top: 10px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .payment-status {) Tj
-0 -15 Td
-(      background: #d4edda;) Tj
-0 -15 Td
-(      color: #155724;) Tj
-0 -15 Td
-(      padding: 10px;) Tj
-0 -15 Td
-(      border-radius: 5px;) Tj
-0 -15 Td
-(      text-align: center;) Tj
-0 -15 Td
-(      font-weight: bold;) Tj
-0 -15 Td
-(      margin-bottom: 20px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .car-details {) Tj
-0 -15 Td
-(      background: #f0f8ff;) Tj
-0 -15 Td
-(      padding: 15px;) Tj
-0 -15 Td
-(      border-radius: 5px;) Tj
-0 -15 Td
-(      margin-bottom: 20px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .car-name {) Tj
-0 -15 Td
-(      font-size: 16px;) Tj
-0 -15 Td
-(      font-weight: bold;) Tj
-0 -15 Td
-(      color: #0066cc;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(    .footer {) Tj
-0 -15 Td
-(      text-align: center;) Tj
-0 -15 Td
-(      margin-top: 30px;) Tj
-0 -15 Td
-(      padding-top: 20px;) Tj
-0 -15 Td
-(      border-top: 2px solid #0066cc;) Tj
-0 -15 Td
-(      color: #666;) Tj
-0 -15 Td
-(      font-size: 11px;) Tj
-0 -15 Td
-(    }) Tj
-0 -15 Td
-(  ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(  ) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      DriveEasy) Tj
-0 -15 Td
-(      Car Rental Receipt) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      Receipt #: 000017 | Date: November 21, 2025 02:14 PM) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      Payment Received - Online Payment) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      Customer Information) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Name:) Tj
-0 -15 Td
-(        Test User) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Email:) Tj
-0 -15 Td
-(        wew@gmail.com) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Phone:) Tj
-0 -15 Td
-(        09454564232) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      Vehicle Details) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Honda (Sports Car)) Tj
-0 -15 Td
-(        ) Tj
-0 -15 Td
-(          Plate: UYHT12) Tj
-0 -15 Td
-(        ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      Rental Details) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Rental Date:) Tj
-0 -15 Td
-(        November 21, 2025) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Return Date:) Tj
-0 -15 Td
-(        November 22, 2025) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Duration:) Tj
-0 -15 Td
-(        1 day) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Daily Rate:) Tj
-0 -15 Td
-(        ₱2,000.00) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        ) Tj
-0 -15 Td
-(          Subtotal:) Tj
-0 -15 Td
-(          ₱2,000.00) Tj
-0 -15 Td
-(        ) Tj
-0 -15 Td
-(        ) Tj
-0 -15 Td
-(          Taxes & Fees:) Tj
-0 -15 Td
-(          ₱0.00) Tj
-0 -15 Td
-(        ) Tj
-0 -15 Td
-(        ) Tj
-0 -15 Td
-(          Total Paid:) Tj
-0 -15 Td
-(          ₱2,000.00) Tj
-0 -15 Td
-(        ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      Payment Info) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Method:) Tj
-0 -15 Td
-(        Online) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Status:) Tj
-0 -15 Td
-(        Completed) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(        Date:) Tj
-0 -15 Td
-(        November 21, 2025 02:14 PM) Tj
-0 -15 Td
-(      ) Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-() Tj
-0 -15 Td
-(    ) Tj
-0 -15 Td
-(      Thank you for choosing DriveEasy!) Tj
-0 -15 Td
-(      For inquiries: support@driveeasy.com) Tj
-0 -15 Td
-(      Keep this receipt as proof of payment) Tj
-0 -15 Td
-ET
-
-endstream
-endobj
-xref
-0 6
-0000000000 65535 f
-0000000009 00000 n
-0000000058 00000 n
-0000000115 00000 n
-0000000273 00000 n
-0000000351 00000 n
-trailer<</Size 6/Root 1 0 R>>
-startxref
-13821
-%%EOF

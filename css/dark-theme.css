@@ -1,0 +1,226 @@
+/* Dark Theme for DriveEasy Car Rental System */
+:root {
+  --bg-primary: #2b2b2b;
+  --bg-secondary: #1f1f1f;
+  --bg-card: #363636;
+  --bg-hover: #404040;
+  
+  --text-primary: #e5e5e5;
+  --text-secondary: #b0b0b0;
+  --text-muted: #8a8a8a;
+  
+  --accent-red: #dc2626;
+  --accent-red-hover: #b91c1c;
+  --accent-red-light: #ef4444;
+  
+  --border-color: #4a4a4a;
+  --border-light: #3a3a3a;
+}
+
+body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Card Backgrounds */
+.bg-white {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--bg-primary) !important;
+}
+
+.bg-gray-100 {
+  background-color: var(--bg-secondary) !important;
+}
+
+.bg-gray-200 {
+  background-color: var(--bg-card) !important;
+}
+
+/* Text Colors */
+.text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-800 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-500 {
+  color: var(--text-muted) !important;
+}
+
+.text-gray-400 {
+  color: var(--text-muted) !important;
+}
+
+/* Borders */
+.border-gray-200,
+.border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+.border-gray-100 {
+  border-color: var(--border-light) !important;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+  background-color: var(--bg-card) !important;
+  border-color: var(--accent-red) !important;
+}
+
+input[readonly] {
+  background-color: var(--bg-secondary) !important;
+  opacity: 0.7;
+}
+
+/* Shadows */
+.shadow-md,
+.shadow-lg,
+.shadow-xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Hover States */
+.hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.hover\:bg-gray-50:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+/* Tables */
+table {
+  background-color: var(--bg-card) !important;
+}
+
+table thead {
+  background-color: var(--bg-secondary) !important;
+}
+
+table tbody tr:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+table th {
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+table td {
+  color: var(--text-secondary) !important;
+  border-color: var(--border-light) !important;
+}
+
+/* Modals */
+.modal-content {
+  background-color: var(--bg-card) !important;
+}
+
+/* Dropdown */
+#notifDropdown,
+.dropdown-menu {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Status badges - keep their colors vibrant */
+.bg-green-100 {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+.text-green-800 {
+  color: #4ade80 !important;
+}
+
+.bg-yellow-100 {
+  background-color: rgba(234, 179, 8, 0.2) !important;
+}
+
+.text-yellow-800 {
+  color: #facc15 !important;
+}
+
+.bg-red-100 {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.text-red-800 {
+  color: #f87171 !important;
+}
+
+.text-red-700 {
+  color: var(--accent-red-light) !important;
+}
+
+/* Red accent backgrounds */
+.bg-red-50 {
+  background-color: rgba(220, 38, 38, 0.1) !important;
+}
+
+/* Links */
+a {
+  color: var(--accent-red-light);
+}
+
+a:hover {
+  color: var(--accent-red);
+}
+
+/* Placeholder text */
+::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 0.6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
+}

@@ -58,6 +58,7 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pending Bookings - DriveEasy</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/dark-theme.css">
 </head>
 <body class="bg-gray-50">
   <?php include 'components/admin-nav.php'; ?>
@@ -152,5 +153,6 @@ $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
     <?php endif; ?>
   </div>
+      <script src="js/signout.js">  </script>
 </body>
 </html>

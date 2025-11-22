@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Cars - DriveEasy</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/dark-theme.css">
 </head>
 <body class="bg-gray-50">
   <?php include 'components/admin-nav.php'; ?>
@@ -25,7 +26,7 @@ $cars = $pdo->query("SELECT * FROM cars WHERE status = 'Available'")->fetchAll(P
               <?php if ($car['car_image']): ?>
                 <img src="<?php echo htmlspecialchars($car['car_image']); ?>" alt="<?php echo htmlspecialchars($car['car_model']); ?>" class="w-full h-56 object-cover" />
               <?php endif; ?>
-              <span class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span class="absolute top-4 right-4 bg-red-700 text-white px-3 py-1 rounded-full text-sm font-medium">
                 <?php echo htmlspecialchars($car['status']); ?>
               </span>
             </div>
@@ -58,7 +59,7 @@ $cars = $pdo->query("SELECT * FROM cars WHERE status = 'Available'")->fetchAll(P
                   <span class="text-gray-600 text-sm"> per day</span>
                 </div>
                 <a href="Reservation.php?car_id=<?php echo $car['car_id']; ?>">
-                  <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">Book Now</button>
+                  <button class="bg-red-700 hover:bg-red-800 text-white px-6 py-2 rounded-lg font-medium transition-colors">Book Now</button>
                 </a>
 
               </div>
